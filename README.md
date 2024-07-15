@@ -71,7 +71,7 @@ If transform is none, this will be used:
     ])
 ```
 
-If you want to pass your own transform, make sure you resize the image and convert it to a tensor with `transforms.ToTensor`
+If you want to pass your own transform, make sure you resize the image and convert it to a tensor with `transforms.ToTensor()`
 
 ## Features
 
@@ -114,7 +114,7 @@ I welcome contributions to PyTorchLayerViz! If you'd like to contribute, please 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ## Contact
 
