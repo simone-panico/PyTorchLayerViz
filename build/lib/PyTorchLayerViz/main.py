@@ -1,3 +1,10 @@
+import torch
+import torch.nn as nn
+import torchvision.transforms as transforms
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+
 ##########################################################
 def extract_layers_and_weights(model, layers_to_check, sequential_order=True):
     # Initialize dictionaries and lists to store layers and their weights
@@ -46,9 +53,9 @@ def extract_layers_and_weights(model, layers_to_check, sequential_order=True):
                     add_layer_info(layer_type, module)
 
     # Print the counts of each layer type
-    if not sequential_order:
-        for layer_type, count in layer_counters.items():
-            print(f"Total {layer_type} layers: {count}")
+#    if not sequential_order:
+#        for layer_type, count in layer_counters.items():
+#            print(f"Total {layer_type} layers: {count}")
 
     if sequential_order:
         return ordered_layers, ordered_layer_names
@@ -133,6 +140,4 @@ def get_feature_maps(model, layers_to_check, input_image_path, transform = None,
     feature_maps, layer_names = extract_feature_maps([layer for layer_list in layers.values() for layer in layer_list], input_image)
 
   processed_feature_maps = process_feature_maps(feature_maps)
-  print("Done 3")
   plot_feature_maps(processed_feature_maps, layer_names)
-  print("Done 4")
