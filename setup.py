@@ -8,7 +8,7 @@ DESCRIPTION = "PyTorchLayerViz is a Python library that allows you to visualize 
 
 setup(
     name="PyTorchLayerViz",
-    version=VERSION,
+    version='{{VERSION_PLACEHOLDER}}',
     author="Simone Panico",
     author_email="simone.panico@icloud.com",
     description=DESCRIPTION,
