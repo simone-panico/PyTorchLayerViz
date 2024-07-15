@@ -1,4 +1,4 @@
-https://img.shields.io/pypi/v/PyTorchLayerViz.svg
+![PyTorchLayerViz - Version](https://img.shields.io/pypi/v/PyTorchLayerViz.svg)
 
 # PyTorchLayerViz
 
