@@ -1,3 +1,5 @@
+https://img.shields.io/pypi/v/PyTorchLayerViz.svg
+
 # PyTorchLayerViz
 
 **PyTorchLayerViz** is a Python library designed to assist developers and researchers in visualizing the weights and feature maps of PyTorch models. This tool provides easy-to-use functions to help understand and interpret deep learning models, making it an essential utility for anyone working with PyTorch.
