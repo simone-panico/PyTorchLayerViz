@@ -84,7 +84,7 @@ If you want to pass your own transform, make sure you resize the image and conve
 
 ### Example Picture
 
-![Example Picture](pictures/hamburger.png)
+![Example Picture](pictures/hamburger.jpg)
 
 ### Code
 
@@ -114,7 +114,7 @@ I welcome contributions to PyTorchLayerViz! If you'd like to contribute, please 
 
 ## License
 
-
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ## Contact
 
