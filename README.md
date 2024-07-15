@@ -1,4 +1,14 @@
 ![PyTorchLayerViz - Version](https://img.shields.io/pypi/v/PyTorchLayerViz.svg)
+![Build Status](https://img.shields.io/github/workflow/status/simone-panico/PyTorchLayerViz/WORKFLOW)
+![Coverage](https://img.shields.io/codecov/c/github/simone-panico/PyTorchLayerViz)
+![License](https://img.shields.io/github/license/simone-panico/PyTorchLayerViz)
+![Version](https://img.shields.io/github/v/release/simone-panico/PyTorchLayerViz)
+![Downloads](https://img.shields.io/github/downloads/simone-panico/PyTorchLayerViz/total)
+![Stars](https://img.shields.io/github/stars/simone-panico/PyTorchLayerViz)
+![Known Vulnerabilities](https://snyk.io/test/github/simone-panico/PyTorchLayerViz/badge.svg)
+![Dependency Status](https://img.shields.io/librariesio/github/simone-panico/PyTorchLayerViz)
+![Docs](https://img.shields.io/readthedocs/PyTorchLayerViz)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/simone-panico/PyTorchLayerViz)
 
 # PyTorchLayerViz
 
