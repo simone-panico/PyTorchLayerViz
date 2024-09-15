@@ -39,7 +39,7 @@ pip install pytorchlayerviz
 Here is a basic example of how to use PyTorchLayerViz:
 
 ```python
-from pytorchlayerviz import get_feature_maps
+from PyTorchLayerViz import get_feature_maps
 import matplotlib.pyplot as plt
 from PIL import Image
 import torch
@@ -49,7 +49,7 @@ from torchvision.transforms import ToTensor
 
 # Define your model
 model = torch.nn.Sequential(
-    torch.nn.Conv2d(1, 20, 5),
+    torch.nn.Conv2d(3, 20, 5),
     torch.nn.ReLU(),
     torch.nn.Conv2d(20, 64, 5),
     torch.nn.ReLU()
