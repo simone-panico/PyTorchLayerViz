@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: PyTorchLayerViz
-Version: 1.2
+Version: 1.2.1
 Summary: PyTorchLayerViz is a Python library that allows you to visualize the weights and feature maps of a PyTorch model.
 Author: Simone Panico
 Author-email: simone.panico@icloud.com
@@ -73,7 +73,7 @@ layers_to_check = [nn.Conv2d] # Define all Layers you want to pass your picture
 
 input_image_path = 'pictures/hamburger.jpg' # Path to your example picture
 
-get_feature_maps(model = model, layers_to_check = layers_to_check, input_image_path = input_image_path) # Call function from pytorchlayerviz
+numpyArr = get_feature_maps(model = model, layers_to_check = layers_to_check, input_image_path = input_image_path) # Call function from pytorchlayerviz
 ```
 
 ### Parameters
@@ -83,6 +83,8 @@ get_feature_maps(model = model, layers_to_check = layers_to_check, input_image_p
 - **input_image_path (str)** – Path to the input image file. *Required*.
 - **transform (transforms.Compose, optional)** – A function/transform that takes in an image and returns a transformed version. Default is None. *Optional*.
 - **sequential_order (bool, optional)** – If True, the layers are visualized in the order they are defined in the model. If false it will first go through the first layer defined in the arrDefault is True. *Optional*.
+
+**Return** The function 'get_feature_maps()` returns the pictures as NumPy Arrays
 
 If transform is none, this will be used:
 
@@ -115,7 +117,7 @@ pretrained_model = models.vgg16(pretrained=True)
 input_image_path = 'hamburger.jpg'
 layers_to_check= [nn.MaxPool2d]
 
-get_feature_maps(model = pretrained_model, layers_to_check = layers_to_check, input_image_path = input_image_path, sequential_order = False)
+numpyArr = get_feature_maps(model = pretrained_model, layers_to_check = layers_to_check, input_image_path = input_image_path, sequential_order = False)
 ```
 
 ### Output

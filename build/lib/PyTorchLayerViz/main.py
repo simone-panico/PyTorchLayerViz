@@ -86,7 +86,7 @@ def process_feature_maps(feature_maps):
     for feature_map in feature_maps:
         feature_map = feature_map.squeeze(0)  # Remove the batch dimension
         if feature_map.shape[0] == 3:
-            processed_feature_maps.append(mean_feature_map.data.cpu().numpy())
+            processed_feature_maps.append(feature_map.data.cpu().numpy())
         else:
             mean_feature_map = torch.sum(feature_map, 0) / feature_map.shape[0]
             processed_feature_maps.append(mean_feature_map.data.cpu().numpy())
