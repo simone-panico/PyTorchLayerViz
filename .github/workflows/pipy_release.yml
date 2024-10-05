@@ -8,7 +8,7 @@ on:
 jobs:
   test-and-publish:
     name: Test and publish PyTorchLayerViz to PyPI
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
