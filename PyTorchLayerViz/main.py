@@ -134,22 +134,22 @@ def plot_feature_maps(processed_feature_maps, layer_names):
 
 
 def get_feature_maps(
-    model, layers_to_check, input_image_path, transform=None, sequential_order=True
+    model, layers_to_check, input_image_path, transform=None, sequential_order=True, print_image=False
 ):
     if transform is None:
         # Define the image transformations
         transform = transforms.Compose(
             [
-                transforms.Resize((224, 224)),  # Resize the image to 224x224 pixels
-                transforms.ToTensor(),  # Convert the image to a PyTorch tensor
-                # transforms.Normalize(mean=0., std=1.)  # Normalize the image tensor
+                transforms.Resize((224, 224)), 
+                transforms.ToTensor(),  
+                # transforms.Normalize(mean=0., std=1.)  
             ]
         )
 
     # Example usage
-    input_image = Image.open(input_image_path)  # add your image path
+    input_image = Image.open(input_image_path) 
     input_image = transform(input_image)
-    input_image = input_image.unsqueeze(0)  # Add a batch dimension
+    input_image = input_image.unsqueeze(0)  
 
     if sequential_order:
         ordered_layers, ordered_layer_names = extract_layers_and_weights(
@@ -166,7 +166,8 @@ def get_feature_maps(
         )
 
     processed_feature_maps = process_feature_maps(feature_maps)
-    plot_feature_maps(processed_feature_maps, layer_names)
+    if print_image:
+        plot_feature_maps(processed_feature_maps, layer_names)
     images = []
     for feature_map in processed_feature_maps:
         if feature_map.ndim == 2:  # Grayscale feature map
