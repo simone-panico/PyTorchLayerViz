@@ -7,11 +7,7 @@ from torchvision import datasets, transforms, models
 from torchvision.transforms import ToTensor
 from PIL import Image
 import numpy as np
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join('..', 'PyTorchLayerViz')))
-
-from main import get_feature_maps
+from PyTorchLayerViz.main import get_feature_maps
 
 pretrained_model = models.vgg16(pretrained=True)
 input_image_path = 'brain.tif'
