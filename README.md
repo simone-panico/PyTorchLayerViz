@@ -87,7 +87,7 @@ If you want to pass your own transform, make sure you resize the image and conve
 
 ## Features
 
-* Visualize Weights: Easily visualize the weights of each layer in your PyTorch model.
+* Visualize Weights: Easily visualize the weights of each layer in your PyTorch model
 * Visualize Feature Maps: Generate and visualize feature maps for given inputs.
 * Customizable: Flexible options for customizing visualizations.
 
