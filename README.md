@@ -18,6 +18,7 @@
   - [Usage](#usage)
     - [Parameters](#parameters)
   - [Features](#features)
+  - [Advanced Usage](#advanced-usage)
   - [Examples](#examples)
     - [Example Picture](#example-picture)
     - [Code](#code)
@@ -90,6 +91,24 @@ If you want to pass your own transform, make sure you resize the image and conve
 * Visualize Feature Maps: Generate and visualize feature maps for given inputs.
 * Customizable: Flexible options for customizing visualizations.
 
+
+## Advanced Usage
+### Extracting Feature Maps with Layer Names
+
+The get_feature_maps function now returns a list of tuples, each containing the feature map and its corresponding layer name. This enhancement allows you to identify which layer each feature map comes from.
+
+```python
+feature_maps = get_feature_maps(
+    model=model,
+    layers_to_check=[nn.Conv2d, nn.MaxPool2d],
+    input_image_path='path_to_image.jpg',
+    print_image=False
+)
+
+for image_array, layer_name in feature_maps:
+    print(f"Layer: {layer_name}")
+    # Process or display the image as needed
+```    
 
 ## Examples
 
