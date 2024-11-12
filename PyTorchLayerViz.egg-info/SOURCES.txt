@@ -9,3 +9,4 @@ PyTorchLayerViz.egg-info/commands.txt
 PyTorchLayerViz.egg-info/dependency_links.txt
 PyTorchLayerViz.egg-info/requires.txt
 PyTorchLayerViz.egg-info/top_level.txt
+test/test_get_feature_maps.py

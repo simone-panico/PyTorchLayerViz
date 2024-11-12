@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ##########################################################
+
+
 def extract_layers_and_weights(model, layers_to_check, sequential_order=True):
     # Initialize dictionaries and lists to store layers and their weights
     layer_weights = {}
@@ -126,7 +128,8 @@ def plot_feature_maps(processed_feature_maps, layer_names):
             ax.set_title(layer_names[i].split("(")[0], fontsize=30)
             plot_index += 1
         else:
-            print(f"Skipping feature map at index {i} with shape: {feature_map.shape}")
+            print(f"Skipping feature map at index {
+                  i} with shape: {feature_map.shape}")
     plt.show()
 
 
@@ -134,46 +137,52 @@ def plot_feature_maps(processed_feature_maps, layer_names):
 
 
 def get_feature_maps(
-    model, layers_to_check, input_image_path, transform=None, sequential_order=True, print_image=False
+    model, layers_to_check, input_image_path, transform=None, print_image=False
 ):
     if transform is None:
         # Define the image transformations
         transform = transforms.Compose(
             [
-                transforms.Resize((224, 224)), 
-                transforms.ToTensor(),  
-                # transforms.Normalize(mean=0., std=1.)  
+                transforms.Resize((224, 224)),
+                transforms.ToTensor(),
+                # transforms.Normalize(mean=0., std=1.)
             ]
         )
 
-    # Example usage
-    input_image = Image.open(input_image_path) 
+    # Load and preprocess the image
+    input_image = Image.open(input_image_path)
     input_image = transform(input_image)
-    input_image = input_image.unsqueeze(0)  
+    input_image = input_image.unsqueeze(0)
 
-    if sequential_order:
-        ordered_layers, ordered_layer_names = extract_layers_and_weights(
-            model, layers_to_check, sequential_order
-        )
-        feature_maps, layer_names = extract_feature_maps(ordered_layers, input_image)
-    else:
-        layer_weights, layers, layer_counters = extract_layers_and_weights(
-            model, layers_to_check, sequential_order
-        )
-        feature_maps, layer_names = extract_feature_maps(
-            [layer for layer_list in layers.values() for layer in layer_list],
-            input_image,
-        )
+    activations = {}
+    # Register hooks
+
+    def get_activation(name):
+        def hook(model, input, output):
+            activations[name] = output.detach()
+        return hook
+
+    # Register hooks on the layers of interest
+    for name, module in model.named_modules():
+        if isinstance(module, tuple(layers_to_check)):
+            module.register_forward_hook(get_activation(name))
+
+    # Pass the input through the model
+    _ = model(input_image)
+
+    # Now activations dictionary has the outputs
+    feature_maps = list(activations.values())
+    layer_names = list(activations.keys())
 
     processed_feature_maps = process_feature_maps(feature_maps)
     if print_image:
         plot_feature_maps(processed_feature_maps, layer_names)
     images = []
-    for feature_map in processed_feature_maps:
+    for feature_map, layer_name in zip(processed_feature_maps, layer_names):
         if feature_map.ndim == 2:  # Grayscale feature map
             colored_feature_map = apply_colormap(feature_map)
-            images.append(colored_feature_map)
-        elif feature_map.ndim == 3 and feature_map.shape[0] == 3:  # RGB feature map
-            images.append(np.transpose(feature_map, (1, 2, 0)))
-
-        return images
+            images.append((colored_feature_map, layer_name))
+        # RGB feature map
+        elif feature_map.ndim == 3 and feature_map.shape[0] == 3:
+            images.append((np.transpose(feature_map, (1, 2, 0)), layer_name))
+    return images
