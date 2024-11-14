@@ -143,20 +143,23 @@ def get_feature_maps(
         # Define the image transformations
         transform = transforms.Compose(
             [
-                transforms.Resize((224, 224)),
-                transforms.ToTensor(),
-                # transforms.Normalize(mean=0., std=1.)
+                transforms.Resize((224, 224)), 
+                transforms.ToTensor(),  
+                # transforms.Normalize(mean=0., std=1.)  
             ]
         )
 
     # Load and preprocess the image
-    input_image = Image.open(input_image_path)
+    input_image = Image.open(input_image_path) 
     input_image = transform(input_image)
-    input_image = input_image.unsqueeze(0)
+    input_image = input_image.unsqueeze(0)  
+
+    # **Move the input to the same device as the model**
+    device = next(model.parameters()).device
+    input_image = input_image.to(device)
 
     activations = {}
     # Register hooks
-
     def get_activation(name):
         def hook(model, input, output):
             activations[name] = output.detach()
@@ -182,7 +185,6 @@ def get_feature_maps(
         if feature_map.ndim == 2:  # Grayscale feature map
             colored_feature_map = apply_colormap(feature_map)
             images.append((colored_feature_map, layer_name))
-        # RGB feature map
-        elif feature_map.ndim == 3 and feature_map.shape[0] == 3:
+        elif feature_map.ndim == 3 and feature_map.shape[0] == 3:  # RGB feature map
             images.append((np.transpose(feature_map, (1, 2, 0)), layer_name))
     return images
